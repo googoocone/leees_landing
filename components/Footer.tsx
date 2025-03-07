@@ -7,7 +7,7 @@ export default function Footer() {
   const [phone, setPhone] = useState("");
   const [field, setField] = useState("");
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
