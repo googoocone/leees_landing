@@ -159,7 +159,7 @@ const Section6 = () => {
   const selectedMenu = menus.find((item) => item.title === isMenu) || menus[0];
 
   return (
-    <div className="w-full h-[1660px] sm:h-[1300px] bg-[#534F4B] flex flex-col gap-15 items-center justify-center">
+    <div className="w-full h-[1560px] sm:h-[1300px] bg-[#534F4B] flex flex-col gap-15 items-center justify-center">
       <div className="hidden sm:block text-[24px] font-semibold text-center text-white">
         <h2>10여년 도산전문 경력, 중소기업 부터 대기업까지</h2>
         <h2>
@@ -179,7 +179,7 @@ const Section6 = () => {
           있습니다.
         </h2>
       </div>
-      <div className="flex gap-2 w-full sm:w-[1110px] h-[110px] overflow-x-auto sm:overflow-x-hidden whitespace-nowrap">
+      <div className="flex gap-2 w-full sm:w-[1110px] h-[110px] overflow-x-auto sm:overflow-x-hidden whitespace-nowrap sm:px-0 px-4">
         {menus.map((item) => (
           <div
             key={item.number}
