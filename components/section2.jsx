@@ -1,8 +1,12 @@
 "use client";
-
-import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 
 export default function Section2() {
+  const fadeInFromLeft = {
+    hidden: { opacity: 0, y: 200 }, // 왼쪽에서 시작
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8 } }, // 오른쪽으로 이동하며 나타남
+  };
+
   const cards = [
     {
       number: "01",
@@ -43,22 +47,29 @@ export default function Section2() {
       </div>
       <div className="flex flex-col sm:flex-row sm:h-[310px] items-center justify-center gap-5">
         {cards.map((card, index) => (
-          <div
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            variants={fadeInFromLeft}
+            viewport={{ once: true, amount: 0.5 }}
             key={index}
-            className={`w-full h-[84px] sm:w-[230px] gap-4 sm:gap-0 sm:h-[240px] p-6 flex sm:flex-col items-center justify-center sm:justify-start ${
-              index % 2 === 1 ? "desktop-mt" : ""
-            }`}
-            style={{
-              backgroundColor: card.bgColor,
-            }}
           >
-            <div className="sm:w-full h-[70px] flex items-center justify-start text-[32px] sm:text-[60px] text-[#534F4B] font-bold">
-              {card.number}
+            <div
+              className={`w-full h-[84px] sm:w-[230px] gap-4 sm:gap-0 sm:h-[240px] p-6 flex sm:flex-col items-center justify-center sm:justify-start ${
+                index % 2 === 1 ? "mt-20" : ""
+              }`}
+              style={{
+                backgroundColor: card.bgColor,
+              }}
+            >
+              <div className="sm:w-full h-[70px] flex items-center justify-start text-[32px] sm:text-[60px] text-[#534F4B] font-bold">
+                {card.number}
+              </div>
+              <div className="w-full text-justify text-[#534F4B] mt-0 sm:mt-2 text-[16px] font-semibold sm:text-[18px]">
+                {card.text}
+              </div>
             </div>
-            <div className="w-full text-justify text-[#534F4B] mt-0 sm:mt-2 text-[16px] font-semibold sm:text-[18px]">
-              {card.text}
-            </div>
-          </div>
+          </motion.div>
         ))}
       </div>
       <h1 className="text-[24px] sm:text-[40px] px-10 pt-14 sm:p-0 text-center font-semibold">

@@ -185,7 +185,7 @@ const Section6 = () => {
             key={item.number}
             onClick={() => setIsMenu(item.title)}
             className={cn(
-              "w-[103px] h-[103px] shrink-0 border border-white rounded-xl flex flex-col items-center justify-center gap-2 text-white cursor-pointer hover:border-2 transition-all duration-500",
+              "w-[103px] h-[103px] shrink-0 border border-white rounded-xl flex flex-col items-center justify-center gap-2 text-white cursor-pointer hover:border-2 transition-all duration-200",
               isMenu === item.title ? "bg-[#B73D24] border-0" : ""
             )}
           >
