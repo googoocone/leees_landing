@@ -53,7 +53,7 @@ export default function Section2() {
             variants={fadeInFromLeft}
             viewport={{ once: true, amount: 0.5 }}
             key={index}
-            className="w-full"
+            className="w-full sm:w-[230px]"
           >
             <div
               className={`w-full h-[84px] sm:w-[230px] gap-4 sm:gap-0 sm:h-[240px] p-6 flex sm:flex-col items-center justify-center sm:justify-start ${
