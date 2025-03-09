@@ -35,7 +35,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="hidden sm:w-full h-[80px] sm:h-[90px] bg-[#534F4B] fixed bottom-0 sm:flex items-center justify-center">
+    <footer className="hidden sm:w-full h-[80px] sm:h-[90px] bg-[#534F4B] fixed bottom-0 sm:flex items-center justify-center z-100">
       <form
         onSubmit={handleSubmit}
         className="w-[950px] h-[60px] flex items-center justify-center gap-2"
