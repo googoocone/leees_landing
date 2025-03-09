@@ -16,13 +16,13 @@ export default function Section2() {
     },
     {
       number: "02",
-      text: "개인의 자금을 회사에 넣기 시작했다.",
+      text: "개인의 자금을 회사에 넣기 시작했다. ",
       bgColor: "white",
       delay: 0,
     },
     {
       number: "03",
-      text: "회사 직원들의 급여를 주기가 힘들다.",
+      text: "회사 직원들의 급여를 주기가 힘들다. ",
       bgColor: "#EBDCC8",
       delay: 0,
     },
@@ -53,6 +53,7 @@ export default function Section2() {
             variants={fadeInFromLeft}
             viewport={{ once: true, amount: 0.5 }}
             key={index}
+            className="w-full"
           >
             <div
               className={`w-full h-[84px] sm:w-[230px] gap-4 sm:gap-0 sm:h-[240px] p-6 flex sm:flex-col items-center justify-center sm:justify-start ${
