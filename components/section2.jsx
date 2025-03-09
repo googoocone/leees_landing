@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 export default function Section2() {
   const fadeInFromLeft = {
-    hidden: { opacity: 0, y: 200 }, // 왼쪽에서 시작
+    hidden: { opacity: 0, y: 100 }, // 왼쪽에서 시작
     visible: { opacity: 1, y: 0, transition: { duration: 0.8 } }, // 오른쪽으로 이동하며 나타남
   };
 
@@ -22,7 +22,7 @@ export default function Section2() {
     },
     {
       number: "03",
-      text: "직원들의 급여를 주기가 힘들다.",
+      text: "회사 직원들의 급여를 주기가 힘들다.",
       bgColor: "#EBDCC8",
       delay: 0,
     },
@@ -45,7 +45,7 @@ export default function Section2() {
           있습니다.
         </div>
       </div>
-      <div className="flex flex-col sm:flex-row sm:h-[310px] items-center justify-center gap-5">
+      <div className="flex flex-col sm:flex-row w-full h-[382px] sm:h-[310px] items-center justify-center gap-5">
         {cards.map((card, index) => (
           <motion.div
             initial="hidden"
@@ -56,7 +56,7 @@ export default function Section2() {
           >
             <div
               className={`w-full h-[84px] sm:w-[230px] gap-4 sm:gap-0 sm:h-[240px] p-6 flex sm:flex-col items-center justify-center sm:justify-start ${
-                index % 2 === 1 ? "mt-20" : ""
+                index % 2 === 1 ? "sm:mt-20" : ""
               }`}
               style={{
                 backgroundColor: card.bgColor,
