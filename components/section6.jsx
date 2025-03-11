@@ -166,7 +166,7 @@ const Section6 = () => {
           있습니다.
         </h2>
       </div>
-      <div className="flex gap-2 w-full sm:w-[1110px] h-[110px] overflow-x-auto sm:overflow-x-hidden whitespace-nowrap sm:px-0 px-4">
+      <div className="flex gap-2 w-full sm:w-[550px] sm:h-[220px] overflow-x-auto sm:flex-wrap whitespace-nowrap sm:px-0 px-4">
         {menus.map((item) => (
           <div
             key={item.number}
