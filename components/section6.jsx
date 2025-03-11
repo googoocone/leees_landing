@@ -27,8 +27,6 @@ const menus = [
       "창원지방법원 현대자동차 1차 벤더 법인회생(채권자대리)",
       "부산회생법원 선박제조업 법인회생",
       "대전지방법원 모래 및 자갈 채취업 법인회생",
-    ],
-    case_bankruptcy: [
       "의정부지방법원 모피제조업 법인파산",
       "수원회생법원 가구제작업 법인파산",
       "수원회생법원 프린터 개발 및 제조업 법인파산",
@@ -49,8 +47,6 @@ const menus = [
       "의정부지방법원 피부과병원 일반회생",
       "창원지방법원 대형약국 일반회생",
       "창원지방법원 화상외과 일반회생",
-    ],
-    case_bankruptcy: [
       "부산회생법원 의사 파산 및 면책",
       "전주지방법원 한의사 파산 및 면책",
     ],
@@ -59,8 +55,7 @@ const menus = [
     number: 3,
     title: "임대업",
     icon: <TbBuildingEstate className="w-[30px] h-[30px]" />,
-    case_revive: [],
-    case_bankruptcy: [
+    case_revive: [
       "의정부지방법원 부동산임대업 법인파산",
       "광주지방법원 부동산 임대업 법인파산",
     ],
@@ -74,8 +69,6 @@ const menus = [
       "서울회생법원 정보서비스업 법인회생",
       "서울회생법원 IT/AI 개발 유통회사 법인회생",
       "서울회생법원 영화 영상물 제작업 법인회생",
-    ],
-    case_bankruptcy: [
       "서울회생법원 가상자산거래소 법인파산",
       "서울회생법원 소프트웨어 개발 및 공급업 법인파산",
       "서울회생법원 벤처기업 및 스타트업 법인파산 다수",
@@ -90,8 +83,8 @@ const menus = [
     case_revive: [
       "수원회생법원 무역업 법인회생",
       "부산회생법원 무역업 법인회생",
+      "광주지방법원 차량용품 제작 및 구매대행업 법인파산",
     ],
-    case_bankruptcy: ["광주지방법원 차량용품 제작 및 구매대행업 법인파산"],
   },
   {
     number: 6,
@@ -102,14 +95,12 @@ const menus = [
       "부산지방법원 광안리 소재 횟집 일반회생 외 전국 다수",
       "대구지방법원 빽다방 제휴업체(HACCP인증) 법인회생",
     ],
-    case_bankruptcy: [],
   },
   {
     number: 7,
     title: "광고업",
     icon: <RiAdvertisementLine className="w-[30px] h-[30px]" />,
-    case_revive: [],
-    case_bankruptcy: ["서울회생법원 연예기획사 법인파산"],
+    case_revive: ["서울회생법원 연예기획사 법인파산"],
   },
   {
     number: 8,
@@ -121,7 +112,6 @@ const menus = [
       "광주지방법원 농업법인 법인회생",
       "대구지방법원 영농조합법인 법인회생",
     ],
-    case_bankruptcy: [],
   },
   {
     number: 9,
@@ -132,7 +122,6 @@ const menus = [
       "대구지방법원 건설기자재 제조업 법인회생",
       "대전지방법원 건설업 법인회생",
     ],
-    case_bankruptcy: [],
   },
   {
     number: 10,
@@ -141,8 +130,6 @@ const menus = [
     case_revive: [
       "서울회생법원 대치동 학원교육업 일반회생 자문",
       "의정부지방법원 HACCP인증업체 법인회생 및 대표자 회생",
-    ],
-    case_bankruptcy: [
       "서울회생법원 여행업 법인파산",
       "수원회생법원 건강식품유통업 법인파산 외 전국 다수",
       "창원지방법원 철제랙 및 물류창고 제조업",
@@ -159,7 +146,7 @@ const Section6 = () => {
   const selectedMenu = menus.find((item) => item.title === isMenu) || menus[0];
 
   return (
-    <div className="w-full h-[1560px] sm:h-[1300px] bg-[#534F4B] flex flex-col gap-15 items-center justify-center">
+    <div className="w-full h-[1060px] sm:h-[1300px] bg-[#534F4B] flex flex-col gap-15 items-center justify-center">
       <div className="hidden sm:block text-[24px] font-semibold text-center text-white">
         <h2>10여년 도산전문 경력, 중소기업 부터 대기업까지</h2>
         <h2>
@@ -194,9 +181,9 @@ const Section6 = () => {
           </div>
         ))}
       </div>
-      <div className="w-full sm:w-[980px] h-[1000px] sm:h-[620px] flex sm:flex-row flex-col p-5 sm:p-0 gap-5">
-        <div className="w-full sm:w-[480px] p-2 sm:p-10 h-full flex flex-col items-center justify-start gap-2 sm:gap-10 bg-white rounded-xl">
-          <div className="text-[24px] mt-4 sm:mt-0 font-semibold">회생</div>
+      <div className="w-full sm:w-[980px] h-[500px] sm:h-[620px] flex sm:flex-row flex-col p-5 sm:p-0 gap-5">
+        <div className="w-full mx-auto sm:w-[480px] p-2 sm:p-10 h-full flex flex-col items-center justify-start gap-2 sm:gap-10 bg-white rounded-xl">
+          <div className="text-[24px] mt-4 sm:mt-0 font-semibold">성공사례</div>
           <div className="w-full sm:w-[400px] h-[400px] overflow-y-auto">
             {selectedMenu.case_revive.length > 0 ? (
               selectedMenu.case_revive.map(
@@ -213,28 +200,6 @@ const Section6 = () => {
             ) : (
               <div className="p-2 text-[16px] text-gray-500">
                 회생 사례가 없습니다.
-              </div>
-            )}
-          </div>
-        </div>
-        <div className="w-full sm:w-[480px] p-2 sm:p-10 h-full flex flex-col items-center justify-start gap-2 sm:gap-10 bg-white rounded-xl">
-          <div className="text-[24px] mt-4 sm:mt-0 font-semibold">파산</div>
-          <div className="w-full sm:w-[400px] h-[480px] overflow-y-auto">
-            {selectedMenu.case_bankruptcy.length > 0 ? (
-              selectedMenu.case_bankruptcy.map(
-                (caseItem, index) =>
-                  caseItem && (
-                    <div
-                      key={index}
-                      className="truncate  p-2 text-[16px] text-gray-800 border-b border-gray-300"
-                    >
-                      {caseItem}
-                    </div>
-                  )
-              )
-            ) : (
-              <div className="p-2 text-[16px] text-gray-500">
-                파산 사례가 없습니다.
               </div>
             )}
           </div>
