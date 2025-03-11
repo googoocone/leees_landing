@@ -84,12 +84,7 @@ export default function Footer() {
             <option className="text-white bg-[#75726f]" value="">
               (선택)
             </option>
-            <option className="text-white bg-[#75726f]" value="개인회생">
-              개인회생
-            </option>
-            <option className="text-white bg-[#75726f]" value="개인파산">
-              개인파산
-            </option>
+
             <option className="text-white bg-[#75726f]" value="법인회생">
               법인회생
             </option>
