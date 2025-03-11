@@ -6,9 +6,11 @@ export default function Footer() {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [field, setField] = useState("");
+  const [isLoading, setIsLoading] = useState(false); // 로딩 상태 추가
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsLoading(true); // 로딩 시작
 
     try {
       const response = await fetch("/api/submit-consultation", {
@@ -31,6 +33,8 @@ export default function Footer() {
     } catch (error) {
       console.error("Error:", error);
       alert("상담 신청 중 오류가 발생했습니다.");
+    } finally {
+      setIsLoading(false); // 요청 완료 후 로딩 종료
     }
   };
 
@@ -94,11 +98,40 @@ export default function Footer() {
             </option>
           </select>
         </div>
+
+        {/* 상담 신청 버튼 (로딩 UI 추가) */}
         <button
-          className="sm:block sm:w-[114px] h-[60px] bg-[#b73b24] text-lg font-semibold border-0 cursor-pointer rounded-xl text-white"
+          className="sm:block sm:w-[114px] h-[60px] bg-[#b73b24] text-lg font-semibold border-0 cursor-pointer rounded-xl text-white flex items-center justify-center"
           type="submit"
+          disabled={isLoading} // 로딩 중이면 클릭 방지
         >
-          상담신청
+          {isLoading ? (
+            <div className="w-full h-full flex items-center justify-center text-sm">
+              상담신청중..
+              <svg
+                className="animate-spin h-6 w-6 mr-2 text-white mx-auto"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                ></circle>
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                ></path>
+              </svg>
+            </div>
+          ) : (
+            "상담신청"
+          )}
         </button>
       </form>
     </footer>

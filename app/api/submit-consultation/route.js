@@ -9,15 +9,6 @@ const serviceAccountAuth = new JWT({
   scopes: ["https://www.googleapis.com/auth/spreadsheets"],
 });
 
-console.log(
-  "GOOGLE_PRIVATE_KEY length:",
-  process.env.GOOGLE_PRIVATE_KEY?.length
-); // 키 길이 확인
-console.log(
-  "GOOGLE_PRIVATE_KEY snippet:",
-  process.env.GOOGLE_PRIVATE_KEY?.slice(0, 50)
-); // 키 일부 출력
-
 const spreadsheetDocId = process.env.SPREADSHEET_DOC_ID;
 const doc = new GoogleSpreadsheet(spreadsheetDocId, serviceAccountAuth);
 
