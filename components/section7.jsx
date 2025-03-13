@@ -38,7 +38,12 @@ const Section7 = () => {
             variants={fadeInFromLeft}
             viewport={{ once: true, amount: 0.5 }}
           >
-            <Image src="/section_7_2.svg" fill alt="이은성 변호사의 차별점 2" />
+            <img
+              src="/section7_2.gif"
+              alt="GIF 애니메이션"
+              className="absolute top-10 left-10 w-[530px] h-[530px] z-10"
+            />
+            <Image src="/section7.svg" fill alt="이은성 변호사의 차별점 2" />
           </motion.div>
           <motion.div
             className="w-full h-[490px] relative"
@@ -77,14 +82,19 @@ const Section7 = () => {
             />
           </motion.div>
           <motion.div
-            className="w-full h-[823px] relative my-5"
+            className="w-full h-[927px] relative my-5"
             initial="hidden"
             whileInView="visible"
             variants={fadeInFromLeft}
             viewport={{ once: true, amount: 0.3 }}
           >
+            <img
+              src="/section7_2_mb.gif"
+              alt="GIF 애니메이션"
+              className="absolute top-60 left-6 w-[292px] h-[658px] z-10"
+            />
             <Image
-              src="/section_7_2_mb.svg"
+              src="/section7_2_mb.svg"
               fill
               alt="이은성변호사의 차별점 2"
             />

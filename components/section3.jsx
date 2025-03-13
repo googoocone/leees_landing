@@ -29,9 +29,9 @@ const Section3 = () => {
             loop={0}
             cursor
             cursorStyle="|"
-            typeSpeed={80}
-            deleteSpeed={50}
-            delaySpeed={1500} // 문장 간 대기 시간
+            typeSpeed={110}
+            deleteSpeed={100}
+            delaySpeed={500} // 문장 간 대기 시간
           />
         </h1>
         <h4 className="hidden sm:block text-[24px] font-semibold text-[#FFF5E9] mb-20 mt-2 text-center">
