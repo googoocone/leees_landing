@@ -9,9 +9,19 @@ const fadeInFromLeft = {
   visible: { opacity: 1, x: 0, transition: { duration: 0.8 } }, // 오른쪽으로 이동하며 나타남
 };
 
-const fadeInFromBottom = {
-  hidden: { opacity: 0, y: 150 }, // 아래에서 시작
-  visible: { opacity: 1, y: 0, transition: { duration: 3 } }, // 위로 올라옴
+const fadeInOut = {
+  hidden: { opacity: 0, y: 50 },
+  animate: (custom) => ({
+    opacity: [0, 1, 1, 0],
+    y: [50, 0, 0, -50],
+    transition: {
+      delay: custom, // custom 값으로 각 이미지에 딜레이 적용
+      duration: 5, // 애니메이션 전체 지속 시간 (예: 5초)
+      times: [0, 0.2, 0.8, 1], // 각 단계별 타이밍 (20%에 도달하면 완전히 나타나고, 80%까지 유지 후 마지막에 사라짐)
+      repeat: Infinity, // 무한 반복
+      repeatDelay: 2, // 한 싸이클 후 2초 대기
+    },
+  }),
 };
 
 const Section7 = () => {
@@ -93,36 +103,41 @@ const Section7 = () => {
             variants={fadeInFromLeft}
             viewport={{ once: true, amount: 0.3 }}
           >
-            <div className="absolute top-60 left-4 w-[320px] h-[726px] z-10 bg-[#f1f1f1]">
+            <motion.div className="absolute top-60 left-4 w-[320px] h-[726px] z-10 bg-[#f1f1f1]">
+              {/* 이미지 1: custom delay 0초 */}
               <motion.div
+                custom={0}
                 initial="hidden"
-                animate="visible"
-                variants={{
-                  visible: {
-                    transition: {
-                      staggerChildren: 2, // 1초 간격으로 애니메이션 실행
-                      // repeat: Infinity, // 무한 반복
-                      // repeatDelay: 1, // 2초 대기 후 다시 반복
-                    },
-                  },
-                }}
+                animate="animate"
+                variants={fadeInOut}
+                key="test_1"
               >
-                {/* 이미지 1 */}
-                <motion.div variants={fadeInFromBottom} key="test_1">
-                  <img src="/test_1.svg" alt="test 1" />
-                </motion.div>
-
-                {/* 이미지 2 */}
-                <motion.div variants={fadeInFromBottom} key="test_2">
-                  <img src="/test_2.svg" alt="test 2" />
-                </motion.div>
-
-                {/* 이미지 3 */}
-                <motion.div variants={fadeInFromBottom} key="test_3">
-                  <img src="/test_3.svg" alt="test 3" />
-                </motion.div>
+                <img src="/test_1.svg" alt="test 1" />
               </motion.div>
-            </div>
+
+              {/* 이미지 2: custom delay 1초 */}
+              <motion.div
+                custom={1}
+                initial="hidden"
+                animate="animate"
+                variants={fadeInOut}
+                key="test_2"
+              >
+                <img src="/test_2.svg" alt="test 2" />
+              </motion.div>
+
+              {/* 이미지 3: custom delay 2초 */}
+              <motion.div
+                custom={2}
+                initial="hidden"
+                animate="animate"
+                variants={fadeInOut}
+                key="test_3"
+              >
+                <img src="/test_3.svg" alt="test 3" />
+              </motion.div>
+            </motion.div>
+
             <Image
               src="/section7_2_mb_test.svg"
               fill
