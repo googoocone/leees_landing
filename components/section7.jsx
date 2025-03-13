@@ -101,8 +101,8 @@ const Section7 = () => {
                   visible: {
                     transition: {
                       staggerChildren: 1, // 1초 간격으로 애니메이션 실행
-                      // repeat: Infinity, // 무한 반복
-                      // repeatDelay: 1, // 2초 대기 후 다시 반복
+                      repeat: Infinity, // 무한 반복
+                      repeatDelay: 1, // 2초 대기 후 다시 반복
                     },
                   },
                 }}
