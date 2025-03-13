@@ -10,8 +10,8 @@ const fadeInFromLeft = {
 };
 
 const fadeInFromBottom = {
-  hidden: { opacity: 0, y: 100 }, // 아래에서 시작
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8 } }, // 위로 올라옴
+  hidden: { opacity: 0, y: 150 }, // 아래에서 시작
+  visible: { opacity: 1, y: 0, transition: { duration: 3 } }, // 위로 올라옴
 };
 
 const Section7 = () => {
@@ -100,9 +100,9 @@ const Section7 = () => {
                 variants={{
                   visible: {
                     transition: {
-                      staggerChildren: 1, // 1초 간격으로 애니메이션 실행
-                      repeat: Infinity, // 무한 반복
-                      repeatDelay: 1, // 2초 대기 후 다시 반복
+                      staggerChildren: 2, // 1초 간격으로 애니메이션 실행
+                      // repeat: Infinity, // 무한 반복
+                      // repeatDelay: 1, // 2초 대기 후 다시 반복
                     },
                   },
                 }}
