@@ -9,6 +9,11 @@ const fadeInFromLeft = {
   visible: { opacity: 1, x: 0, transition: { duration: 0.8 } }, // 오른쪽으로 이동하며 나타남
 };
 
+const fadeInFromBottom = {
+  hidden: { opacity: 0, y: 100 }, // 아래에서 시작
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8 } }, // 위로 올라옴
+};
+
 const Section7 = () => {
   return (
     <>
@@ -82,19 +87,44 @@ const Section7 = () => {
             />
           </motion.div>
           <motion.div
-            className="w-full h-[927px] relative my-5"
+            className="w-full h-[1007px] relative my-5"
             initial="hidden"
             whileInView="visible"
             variants={fadeInFromLeft}
             viewport={{ once: true, amount: 0.3 }}
           >
-            <img
-              src="/section7_2_mb.gif"
-              alt="GIF 애니메이션"
-              className="absolute top-60 left-6 w-[292px] h-[658px] z-10"
-            />
+            <div className="absolute top-60 left-4 w-[320px] h-[726px] z-10 bg-[#f1f1f1]">
+              <motion.div
+                initial="hidden"
+                animate="visible"
+                variants={{
+                  visible: {
+                    transition: {
+                      staggerChildren: 1, // 1초 간격으로 애니메이션 실행
+                      // repeat: Infinity, // 무한 반복
+                      // repeatDelay: 1, // 2초 대기 후 다시 반복
+                    },
+                  },
+                }}
+              >
+                {/* 이미지 1 */}
+                <motion.div variants={fadeInFromBottom} key="test_1">
+                  <img src="/test_1.svg" alt="test 1" />
+                </motion.div>
+
+                {/* 이미지 2 */}
+                <motion.div variants={fadeInFromBottom} key="test_2">
+                  <img src="/test_2.svg" alt="test 2" />
+                </motion.div>
+
+                {/* 이미지 3 */}
+                <motion.div variants={fadeInFromBottom} key="test_3">
+                  <img src="/test_3.svg" alt="test 3" />
+                </motion.div>
+              </motion.div>
+            </div>
             <Image
-              src="/section7_2_mb.svg"
+              src="/section7_2_mb_test.svg"
               fill
               alt="이은성변호사의 차별점 2"
             />
