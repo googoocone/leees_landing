@@ -10,7 +10,7 @@ export default function Section1() {
         poster="/landing_poster.png"
       >
         <source
-          src="/landingMv_mb.mp4"
+          src="/landingMv_2.mp4"
           type="video/mp4"
           media="(max-width: 768px)"
         />
