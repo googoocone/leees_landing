@@ -58,7 +58,7 @@ const Section7 = () => {
               alt="GIF 애니메이션"
               className="absolute top-5 left-5 w-[580px] h-[580px] z-10"
             />
-            <Image src="/section7.svg" fill alt="이은성 변호사의 차별점 2" />
+            <Image src="/section7_2.svg" fill alt="이은성 변호사의 차별점 2" />
           </motion.div>
           <motion.div
             className="w-full h-[490px] relative"

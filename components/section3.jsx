@@ -15,13 +15,23 @@ const Section3 = () => {
       />
       <div className="w-[750px] h-[450px] sm:h-[620px]  z-10 flex flex-col items-center">
         <h1 className="text-[24px] h-[53px] hidden sm:block sm:text-[40px] font-semibold text-white text-center">
-          <Typewriter
-            words={["그럼, 어떤 변호사와 진행을 해야 할까요?"]}
-            loop={0} // 무한 반복
-            typeSpeed={100}
-            deleteSpeed={80}
-            delaySpeed={1000}
-          />
+          <span className="blinking-text">
+            그럼, 어떤 변호사와 진행을 해야 할까요?
+          </span>
+          <style jsx>{`
+            @keyframes blink {
+              0%,
+              100% {
+                opacity: 1;
+              }
+              50% {
+                opacity: 0.1;
+              }
+            }
+            .blinking-text {
+              animation: blink 2s ease-in-out infinite;
+            }
+          `}</style>
         </h1>
         <h1 className="text-[24px] sm:hidden sm:text-[40px] font-semibold text-white text-center">
           <Typewriter
