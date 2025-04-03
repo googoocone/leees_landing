@@ -21,7 +21,7 @@ export default function Footer() {
         body: JSON.stringify({ name, phone, field }),
       });
 
-      const mailer = await fetch("api/submit-email", {
+      await fetch("api/submit-email", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
