@@ -21,6 +21,14 @@ export default function Footer() {
         body: JSON.stringify({ name, phone, field }),
       });
 
+      const mailer = await fetch("api/submit-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, phone, field }),
+      });
+
       const result = await response.json();
       if (response.ok) {
         setName("");
