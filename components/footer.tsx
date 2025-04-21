@@ -1,4 +1,4 @@
-"use client"; // 클라이언트 컴포넌트로 지정
+"use client";
 
 import { useState } from "react";
 
@@ -6,26 +6,25 @@ export default function Footer() {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [field, setField] = useState("");
-  const [isLoading, setIsLoading] = useState(false); // 로딩 상태 추가
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
-    setIsLoading(true); // 로딩 시작
+    setIsLoading(true);
+
+    // 상담 클릭 커스텀 이벤트 발생!
+    window.dispatchEvent(new Event("consultClicked"));
 
     try {
       const response = await fetch("/api/submit-consultation", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, phone, field }),
       });
 
-      await fetch("api/submit-email", {
+      await fetch("/api/submit-email", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, phone, field }),
       });
 
@@ -42,7 +41,7 @@ export default function Footer() {
       console.error("Error:", error);
       alert("상담 신청 중 오류가 발생했습니다.");
     } finally {
-      setIsLoading(false); // 요청 완료 후 로딩 종료
+      setIsLoading(false);
     }
   };
 
@@ -61,7 +60,6 @@ export default function Footer() {
           <input
             placeholder="이름 입력"
             className="w-[100px] h-[40px] bg-transparent border-0 text-lg text-white focus:border-0 focus:outline-none"
-            id="nameInput"
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
@@ -72,7 +70,6 @@ export default function Footer() {
           <input
             placeholder="연락처 입력"
             className="w-[140px] h-[40px] bg-transparent border-0 text-lg text-white focus:border-0 focus:outline-none"
-            id="phoneInput"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
             required
@@ -84,7 +81,6 @@ export default function Footer() {
           </div>
           <select
             className="w-[120px] h-[40px] bg-transparent border-0 text-lg text-white focus:border-0 focus:outline-none cursor-pointer"
-            id="fieldSelect"
             value={field}
             onChange={(e) => setField(e.target.value)}
             required
@@ -92,7 +88,6 @@ export default function Footer() {
             <option className="text-white bg-[#75726f]" value="">
               (선택)
             </option>
-
             <option className="text-white bg-[#75726f]" value="법인회생">
               법인회생
             </option>
@@ -102,17 +97,16 @@ export default function Footer() {
           </select>
         </div>
 
-        {/* 상담 신청 버튼 (로딩 UI 추가) */}
         <button
           className="sm:block sm:w-[114px] h-[60px] bg-[#b73b24] text-lg font-semibold border-0 cursor-pointer rounded-xl text-white flex items-center justify-center"
           type="submit"
-          disabled={isLoading} // 로딩 중이면 클릭 방지
+          disabled={isLoading}
         >
           {isLoading ? (
             <div className="w-full h-full flex items-center justify-center text-sm">
-              상담신청중..
+              상담신청중...
               <svg
-                className="animate-spin h-6 w-6 mr-2 text-white mx-auto"
+                className="animate-spin h-6 w-6 text-white mx-auto"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"

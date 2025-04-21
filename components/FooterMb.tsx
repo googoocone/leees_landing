@@ -14,6 +14,8 @@ export default function FooterMb() {
     setIsLoading(true); // 로딩 시작
     setIsFormOpen(false); // 폼 닫기
 
+    window.dispatchEvent(new Event("consultClicked"));
+
     try {
       const response = await fetch("/api/submit-consultation", {
         method: "POST",
