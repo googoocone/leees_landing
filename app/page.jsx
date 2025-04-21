@@ -47,6 +47,13 @@ export default function Home() {
       const ipRes = await res.json();
       // console.log("Attempting to save log...");
 
+      // --- 추가된 부분 ---
+      // document.referrer에서 이전 페이지 URL 가져오기
+      const referrerUrl = document.referrer || "직접 접속"; // 이전 페이지가 없으면 null 또는 빈 문자열이 될 수 있음
+      console.log("referrerUrl", referrerUrl);
+      // console.log("Referrer URL:", referrerUrl);
+      // --- 추가된 부분 끝 ---
+
       const { error } = await supabase.from("visitor_logs").insert([
         {
           ip_address: ipRes.ip,
@@ -54,11 +61,19 @@ export default function Home() {
           consultClicked: isConsultClicked,
           created_at: getKSTISOString(),
           lawyer: "이은성 변호사",
+          // --- 추가된 부분 ---
+          prev_url: referrerUrl, // 새 컬럼에 이전 URL 저장
+          // --- 추가된 부분 끝 ---
         },
       ]);
 
       if (error) console.error("❌ 저장 실패:", error);
-      else console.log("✅ 저장 성공!", { isConsultClicked, durationSec });
+      else
+        console.log("✅ 저장 성공!", {
+          isConsultClicked,
+          durationSec,
+          referrerUrl,
+        });
     } catch (err) {
       console.error("❌ 예외 발생:", err);
     }
@@ -138,8 +153,6 @@ export default function Home() {
       console.log("Cleanup: consultClicked listener removed");
     };
   }, []); // Empty dependency array means this effect runs only once on mount
-
-  // Remove the redundant second useEffect for visibilitychange
 
   return (
     <div className="w-full h-[12000px]">
