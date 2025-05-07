@@ -57,13 +57,13 @@ export default function FooterMb() {
 
       // 두 번째 API 호출
        // 에러 처리를 위해 mailer 변수로 받아서 await 하는 것이 좋습니다.
-      const mailerResponse = await fetch("api/submit-email", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ name, phone, field }), // 기존 state 값 사용
-      });
+      // const mailerResponse = await fetch("api/submit-email", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify({ name, phone, field }), // 기존 state 값 사용
+      // });
 
       const result = await response.json();
 
@@ -84,9 +84,15 @@ export default function FooterMb() {
       // if (!mailerResponse.ok) { ... }
 
 
-    } catch (error: any) { // any 타입 대신 Error 타입을 사용하거나 커스텀 에러 타입을 정의할 수 있습니다.
+    } catch (error: unknown) { // any 대신 unknown 사용
       console.error("Error:", error);
-      alert("상담 신청 중 오류가 발생했습니다: " + error.message);
+       // error가 Error 타입인지 확인 후 message에 접근
+      if (error instanceof Error) {
+         alert("상담 신청 중 오류가 발생했습니다: " + error.message);
+      } else {
+         // Error 인스턴스가 아닌 경우 일반적인 오류 메시지 표시
+         alert("상담 신청 중 알 수 없는 오류가 발생했습니다.");
+      }
       // 오류 발생 시 로딩 상태만 해제하고 폼은 열어두어 사용자가 수정할 수 있도록 함
     } finally {
       setIsLoading(false); // 로딩 종료
