@@ -31,7 +31,8 @@ export default function Footer() {
     window.dispatchEvent(new Event("consultClicked"));
 
     // 확인 모달 열기
-    setShowConfirmationModal(true);
+    // setShowConfirmationModal(true);
+    confirmAndSubmit();
 
     // 여기서 실제 API 호출을 하지 않고 모달 확인 후 호출하도록 변경
   };
@@ -71,18 +72,21 @@ export default function Footer() {
         // 메일러 응답 처리가 필요한 경우 여기에 추가
         // if (!mailerResponse.ok) { ... }
       } else {
-         // 오류 응답 처리
+        // 오류 응답 처리
         const errorResult = await response.json();
-        throw new Error(errorResult.message || `HTTP error! status: ${response.status}`);
+        throw new Error(
+          errorResult.message || `HTTP error! status: ${response.status}`
+        );
       }
-    } catch (error: unknown) { // any 대신 unknown 사용
+    } catch (error: unknown) {
+      // any 대신 unknown 사용
       console.error("Error:", error);
-       // error가 Error 타입인지 확인 후 message에 접근
+      // error가 Error 타입인지 확인 후 message에 접근
       if (error instanceof Error) {
-         alert("상담 신청 중 오류가 발생했습니다: " + error.message);
+        alert("상담 신청 중 오류가 발생했습니다: " + error.message);
       } else {
-         // Error 인스턴스가 아닌 경우 일반적인 오류 메시지 표시
-         alert("상담 신청 중 알 수 없는 오류가 발생했습니다.");
+        // Error 인스턴스가 아닌 경우 일반적인 오류 메시지 표시
+        alert("상담 신청 중 알 수 없는 오류가 발생했습니다.");
       }
       // 오류 발생 시 로딩 상태만 해제하고 폼은 열어두어 사용자가 수정할 수 있도록 함
     } finally {
@@ -91,12 +95,11 @@ export default function Footer() {
     }
   };
 
-   // **새로운 함수: 모달에서 취소 처리**
+  // **새로운 함수: 모달에서 취소 처리**
   const cancelConfirmation = () => {
     setShowConfirmationModal(false); // 모달 닫기
     // 취소 시 폼 입력 값은 그대로 유지 (원하면 초기화도 가능)
   };
-
 
   return (
     <>
@@ -194,29 +197,30 @@ export default function Footer() {
       {showConfirmationModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[1000]">
           <div className="w-[400px] h-[250px] bg-white p-6 rounded-lg shadow-xl max-w-sm mx-auto text-left">
-            <h2 className="text-2xl font-bold mb-4 text-gray-800">입력 정보 확인</h2>
+            <h2 className="text-2xl font-bold mb-4 text-gray-800">
+              입력 정보 확인
+            </h2>
             <div className="mt-10">
-
-            <p className="mb-1 text-gray-700">
-              <strong>이름:</strong> {name} {/* 기존 state 값 사용 */}
-            </p>
-            <p className="mb-4 text-gray-700">
-              <strong>연락처:</strong> {phone} {/* 기존 state 값 사용 */}
-            </p>
+              <p className="mb-1 text-gray-700">
+                <strong>이름:</strong> {name} {/* 기존 state 값 사용 */}
+              </p>
+              <p className="mb-4 text-gray-700">
+                <strong>연락처:</strong> {phone} {/* 기존 state 값 사용 */}
+              </p>
             </div>
 
             <div className="flex justify-around gap-4 mt-10">
               <button
                 onClick={confirmAndSubmit} // 확인 버튼 클릭 시 실제 제출 함수 호출
                 className="w-[170px] bg-[#b73b24] text-white px-4 py-2 rounded-md hover:bg-blue-700 disabled:opacity-50"
-                 disabled={isLoading} // 제출 처리 중에는 확인 버튼 비활성화
+                disabled={isLoading} // 제출 처리 중에는 확인 버튼 비활성화
               >
-                 {isLoading ? '확인 중...' : '확인'}
+                {isLoading ? "확인 중..." : "확인"}
               </button>
               <button
                 onClick={cancelConfirmation} // 취소 버튼 클릭 시 모달 닫기 함수 호출
                 className="w-[170px] bg-gray-300 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-400"
-                 disabled={isLoading} // 제출 처리 중에는 취소 버튼 비활성화
+                disabled={isLoading} // 제출 처리 중에는 취소 버튼 비활성화
               >
                 취소
               </button>

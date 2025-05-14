@@ -20,7 +20,7 @@ export default function FooterMb() {
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
 
   // 폼 제출 핸들러 (모달을 띄우는 역할)
-   // e의 타입을 React.FormEvent<HTMLFormElement>로 명시하는 것이 더 정확합니다.
+  // e의 타입을 React.FormEvent<HTMLFormElement>로 명시하는 것이 더 정확합니다.
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -33,9 +33,11 @@ export default function FooterMb() {
     // 상담 클릭 이벤트 디스패치 (API 호출 전에 발생)
     window.dispatchEvent(new Event("consultClicked"));
 
-    // 확인 모달 열기
-    setShowConfirmationModal(true);
+    // // 확인 모달 열기
+    // setShowConfirmationModal(true);
     // 여기서 폼을 바로 닫지 않고, 확인 후 제출 성공 시 닫도록 변경
+
+    confirmAndSubmit();
   };
 
   // **새로운 함수: 모달에서 확인 후 실제 제출 처리**
@@ -56,7 +58,7 @@ export default function FooterMb() {
       });
 
       // 두 번째 API 호출
-       // 에러 처리를 위해 mailer 변수로 받아서 await 하는 것이 좋습니다.
+      // 에러 처리를 위해 mailer 변수로 받아서 await 하는 것이 좋습니다.
       // const mailerResponse = await fetch("api/submit-email", {
       //   method: "POST",
       //   headers: {
@@ -78,20 +80,21 @@ export default function FooterMb() {
       } else {
         // 오류 응답 처리
         const errorResult = await response.json();
-        throw new Error(errorResult.message || `HTTP error! status: ${response.status}`);
+        throw new Error(
+          errorResult.message || `HTTP error! status: ${response.status}`
+        );
       }
       // 메일러 응답 처리가 필요한 경우 여기에 추가
       // if (!mailerResponse.ok) { ... }
-
-
-    } catch (error: unknown) { // any 대신 unknown 사용
+    } catch (error: unknown) {
+      // any 대신 unknown 사용
       console.error("Error:", error);
-       // error가 Error 타입인지 확인 후 message에 접근
+      // error가 Error 타입인지 확인 후 message에 접근
       if (error instanceof Error) {
-         alert("상담 신청 중 오류가 발생했습니다: " + error.message);
+        alert("상담 신청 중 오류가 발생했습니다: " + error.message);
       } else {
-         // Error 인스턴스가 아닌 경우 일반적인 오류 메시지 표시
-         alert("상담 신청 중 알 수 없는 오류가 발생했습니다.");
+        // Error 인스턴스가 아닌 경우 일반적인 오류 메시지 표시
+        alert("상담 신청 중 알 수 없는 오류가 발생했습니다.");
       }
       // 오류 발생 시 로딩 상태만 해제하고 폼은 열어두어 사용자가 수정할 수 있도록 함
     } finally {
@@ -103,7 +106,7 @@ export default function FooterMb() {
   // **새로운 함수: 모달에서 취소 처리**
   const cancelConfirmation = () => {
     setShowConfirmationModal(false); // 모달 닫기
-     // 취소 시 폼은 그대로 열려있도록 둠
+    // 취소 시 폼은 그대로 열려있도록 둠
   };
 
   return (
@@ -156,20 +159,22 @@ export default function FooterMb() {
             className="w-full bg-[#534F4B] p-4 animate-slide-up"
             style={{ boxShadow: "0 -2px 10px rgba(0, 0, 0, 0.3)" }}
           >
-             <div className="w-full flex flex-col text-white text-[16px] items-center justify-center py-12 gap-6">
-      <div className="text-center">
-       <div>회생/파산은 채무를 정리하고</div>
-       <div>
-        다시 시작할 수 있는
-        <span className="font-semibold">두번째 기회</span>입니다.
-       </div>
-      </div>
-      <div className="text-center text-[18px] font-semibold">
-       <div>상담 후 선임하지 않으셔도 괜찮습니다</div>
-       <div>전문 변호사와 확실하게 진단해보세요.</div>
-      </div>
-     </div>
-          <form onSubmit={handleSubmit} className="space-y-3"> {/* 폼 제출 시 handleSubmit 호출 (모달 열기) */}
+            <div className="w-full flex flex-col text-white text-[16px] items-center justify-center py-12 gap-6">
+              <div className="text-center">
+                <div>회생/파산은 채무를 정리하고</div>
+                <div>
+                  다시 시작할 수 있는
+                  <span className="font-semibold">두번째 기회</span>입니다.
+                </div>
+              </div>
+              <div className="text-center text-[18px] font-semibold">
+                <div>상담 후 선임하지 않으셔도 괜찮습니다</div>
+                <div>전문 변호사와 확실하게 진단해보세요.</div>
+              </div>
+            </div>
+            <form onSubmit={handleSubmit} className="space-y-3">
+              {" "}
+              {/* 폼 제출 시 handleSubmit 호출 (모달 열기) */}
               {/* 이름 입력 필드 */}
               <div className="flex items-center bg-[#75726f] rounded-xl p-2">
                 <label className="w-30 text-white text-lg font-semibold">
@@ -226,7 +231,8 @@ export default function FooterMb() {
                   className="w-1/2 h-[50px] bg-[#b73b24] text-lg font-semibold text-white rounded-xl"
                   disabled={isLoading || showConfirmationModal} // 로딩 중이거나 모달이 열려있으면 버튼 비활성화
                 >
-                   {isLoading ? '제출 중...' : '제출'} {/* 로딩 중 텍스트 변경 */}
+                  {isLoading ? "제출 중..." : "제출"}{" "}
+                  {/* 로딩 중 텍스트 변경 */}
                 </button>
                 <button
                   type="button"
@@ -245,36 +251,37 @@ export default function FooterMb() {
       {/* **확인 모달** */}
       {showConfirmationModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[1000]">
-        <div className="w-[400px] h-[250px] bg-white p-6 rounded-lg shadow-xl max-w-sm mx-auto text-left">
-          <h2 className="text-2xl font-bold mb-4 text-gray-800">입력 정보 확인</h2>
-          <div className="mt-10">
+          <div className="w-[400px] h-[250px] bg-white p-6 rounded-lg shadow-xl max-w-sm mx-auto text-left">
+            <h2 className="text-2xl font-bold mb-4 text-gray-800">
+              입력 정보 확인
+            </h2>
+            <div className="mt-10">
+              <p className="mb-1 text-gray-700">
+                <strong>이름:</strong> {name} {/* 기존 state 값 사용 */}
+              </p>
+              <p className="mb-4 text-gray-700">
+                <strong>연락처:</strong> {phone} {/* 기존 state 값 사용 */}
+              </p>
+            </div>
 
-          <p className="mb-1 text-gray-700">
-            <strong>이름:</strong> {name} {/* 기존 state 값 사용 */}
-          </p>
-          <p className="mb-4 text-gray-700">
-            <strong>연락처:</strong> {phone} {/* 기존 state 값 사용 */}
-          </p>
-          </div>
-
-          <div className="flex justify-around gap-4 mt-10">
-            <button
-              onClick={confirmAndSubmit} // 확인 버튼 클릭 시 실제 제출 함수 호출
-              className="w-[170px] bg-[#b73b24] text-white px-4 py-2 rounded-md hover:bg-blue-700 disabled:opacity-50"
-               disabled={isLoading} // 제출 처리 중에는 확인 버튼 비활성화
-            >
-               {isLoading ? '확인 중...' : '확인'}
-            </button>
-            <button
-              onClick={cancelConfirmation} // 취소 버튼 클릭 시 모달 닫기 함수 호출
-              className="w-[170px] bg-gray-300 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-400"
-               disabled={isLoading} // 제출 처리 중에는 취소 버튼 비활성화
-            >
-              취소
-            </button>
+            <div className="flex justify-around gap-4 mt-10">
+              <button
+                onClick={confirmAndSubmit} // 확인 버튼 클릭 시 실제 제출 함수 호출
+                className="w-[170px] bg-[#b73b24] text-white px-4 py-2 rounded-md hover:bg-blue-700 disabled:opacity-50"
+                disabled={isLoading} // 제출 처리 중에는 확인 버튼 비활성화
+              >
+                {isLoading ? "확인 중..." : "확인"}
+              </button>
+              <button
+                onClick={cancelConfirmation} // 취소 버튼 클릭 시 모달 닫기 함수 호출
+                className="w-[170px] bg-gray-300 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-400"
+                disabled={isLoading} // 제출 처리 중에는 취소 버튼 비활성화
+              >
+                취소
+              </button>
+            </div>
           </div>
         </div>
-      </div>
       )}
     </>
   );

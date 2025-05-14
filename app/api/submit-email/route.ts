@@ -33,6 +33,7 @@ export async function POST(req: Request) {
 
   try {
     await transporter.sendMail(mailOptions);
+    console.log("이메일 전송 완료");
     return new Response(
       JSON.stringify({
         message: "상담 신청이 완료되었습니다. 확인 메일을 발송했습니다.",
