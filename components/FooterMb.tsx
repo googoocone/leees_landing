@@ -59,7 +59,7 @@ export default function FooterMb() {
 
       // 두 번째 API 호출
       // 에러 처리를 위해 mailer 변수로 받아서 await 하는 것이 좋습니다.
-      const mailerResponse = await fetch("api/submit-email", {
+      await fetch("api/submit-email", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
