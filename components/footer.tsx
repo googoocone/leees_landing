@@ -54,11 +54,11 @@ export default function Footer() {
 
       // 두 번째 API 호출
       // 에러 처리를 위해 mailer 변수로 받아서 await 하는 것이 좋습니다.
-      // const mailerResponse = await fetch("/api/submit-email", {
-      //   method: "POST",
-      //   headers: { "Content-Type": "application/json" },
-      //   body: JSON.stringify({ name, phone, field }), // 기존 state 값 사용
-      // });
+      const mailerResponse = await fetch("/api/submit-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, phone, field }), // 기존 state 값 사용
+      });
 
       const result = await response.json();
 
