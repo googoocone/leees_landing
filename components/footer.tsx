@@ -103,7 +103,7 @@ export default function Footer() {
 
   return (
     <>
-      <footer className="hidden sm:w-full h-[80px] sm:h-[90px] bg-[#534F4B] fixed bottom-0 sm:flex items-center justify-center z-100">
+      <footer className="hidden sm:w-full h-[80px] sm:h-[110px] bg-[#534F4B] fixed bottom-0 sm:flex flex-col items-center justify-center z-100">
         <form
           onSubmit={handleSubmit} // 폼 제출 시 handleSubmit 호출 (모달 열기)
           className="w-[950px] h-[60px] flex items-center justify-center gap-2"
@@ -191,6 +191,10 @@ export default function Footer() {
             )}
           </button>
         </form>
+        <div className="text-white mt-1 blink-text">
+          번호 오류시 상담이 어려울 수 있으니, 입력하신 정보 한번 더 확인
+          부탁드리겠습니다.
+        </div>
       </footer>
 
       {/* **확인 모달** */}
