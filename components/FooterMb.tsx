@@ -159,7 +159,7 @@ export default function FooterMb() {
             className="w-full bg-[#534F4B] p-4 animate-slide-up"
             style={{ boxShadow: "0 -2px 10px rgba(0, 0, 0, 0.3)" }}
           >
-            <div className="w-full flex flex-col text-white text-[16px] items-center justify-center py-12 gap-6">
+            <div className="w-full flex flex-col text-white text-[16px] items-center justify-center py-12 gap-4">
               <div className="text-center">
                 <div>회생/파산은 채무를 정리하고</div>
                 <div>
@@ -170,6 +170,10 @@ export default function FooterMb() {
               <div className="text-center text-[18px] font-semibold">
                 <div>상담 후 선임하지 않으셔도 괜찮습니다</div>
                 <div>전문 변호사와 확실하게 진단해보세요.</div>
+              </div>
+              <div className="text-white  blink-text text-center text-sm px-5">
+                번호 오류시 상담이 어려울 수 있으니, 입력하신 정보 한번 더 확인
+                부탁드리겠습니다.
               </div>
             </div>
             <form onSubmit={handleSubmit} className="space-y-3">

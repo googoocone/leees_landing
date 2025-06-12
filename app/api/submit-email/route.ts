@@ -30,9 +30,22 @@ export async function POST(req: Request) {
     변호사 : 이은성 변호사님
     `,
   };
+  const mailOptions2 = {
+    from: process.env.SMTP_USER,
+    to: process.env.ALERT_EMAIL_SECOND, // 알림 받을 이메일 주소
+    subject: "새로운 상담 신청 알림",
+    text: `새로운 상담 신청이 접수되었습니다.
+    
+    이름: ${name}
+    연락처: ${phone}
+    상담 분야: ${field}
+    변호사 : 이은성 변호사님
+    `,
+  };
 
   try {
     await transporter.sendMail(mailOptions);
+    await transporter.sendMail(mailOptions2);
     console.log("이메일 전송 완료", process.env.ALERT_EMAIL);
     return new Response(
       JSON.stringify({

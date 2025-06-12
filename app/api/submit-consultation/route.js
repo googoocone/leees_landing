@@ -16,12 +16,12 @@ const doc = new GoogleSpreadsheet(spreadsheetDocId, serviceAccountAuth);
 async function initializeSheet() {
   await doc.loadInfo();
 
-  const sheet = doc.sheetsByTitle["시트1"];
+  const sheet = doc.sheetsByTitle["랜딩 문의 건"];
 
   if (!sheet) {
-    throw new Error("시트1을 찾을 수 없습니다.");
+    throw new Error("구글 시트를 찾을 수 없습니다.");
   } else {
-    console.log("시트 1을 찾았습니다.");
+    console.log("구글 시트를 찾았습니다.");
   }
   await sheet.setHeaderRow(["datetime", "name", "phone", "field", "from"]);
   return sheet;
