@@ -24,6 +24,9 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // GTM ID를 변수로 관리하면 편리합니다. (추후 .env.local 파일로 옮기는 것을 권장)
+  const gtmId = "GTM-PGCMQV4R";
+
   return (
     <html lang="en">
       <head>
@@ -41,11 +44,34 @@ export default function RootLayout({
         />
       </head>
       <body className={` antialiased relative`}>
+        {/* Google Tag Manager (noscript) */}
+        <noscript>
+          <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          ></iframe>
+        </noscript>
+        {/* End Google Tag Manager (noscript) */}
+
         <Header></Header>
         {children}
         <TelBtn></TelBtn>
         <Footer></Footer>
         <FooterMb></FooterMb>
+
+        {/* Google Tag Manager */}
+        <Script id="gtm-script" strategy="afterInteractive">
+          {`
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','${gtmId}');
+          `}
+        </Script>
+        {/* End Google Tag Manager */}
       </body>
     </html>
   );
