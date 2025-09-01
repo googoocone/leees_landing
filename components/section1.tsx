@@ -7,7 +7,7 @@ export default function Section1() {
         loop
         className="mx-auto"
         preload="auto"
-        poster="/landing_poster.png"
+        poster="/landing_poster2.png"
       >
         <source
           src="/landingMv_3.mp4"
