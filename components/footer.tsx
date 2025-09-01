@@ -110,7 +110,7 @@ export default function Footer() {
         >
           <div className="w-[122px] h-[57px] flex flex-col items-center justify-center mr-5">
             <p className="text-sm text-white">변호사 직접상담</p>
-            <p className="text-2xl text-white font-semibold">1899-7754</p>
+            <p className="text-2xl text-white font-semibold">1600-5765</p>
           </div>
           <div className="hidden sm:w-[180px] h-[60px] rounded-xl bg-[#75726f] sm:flex items-center justify-center gap-2">
             <div className="w-10 text-white text-lg font-semibold">이름</div>

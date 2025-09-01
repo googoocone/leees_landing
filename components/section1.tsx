@@ -10,11 +10,11 @@ export default function Section1() {
         poster="/landing_poster.png"
       >
         <source
-          src="/landingMv_2.mp4"
+          src="/landingMv_3.mp4"
           type="video/mp4"
           media="(max-width: 768px)"
         />
-        <source src="/landingMv_2.mp4" type="video/mp4" />
+        <source src="/landingMv_3.mp4" type="video/mp4" />
         브라우저가 비디오를 지원하지 않습니다.
       </video>
     </section>
